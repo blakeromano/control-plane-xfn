@@ -1,0 +1,68 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xs3buckets.blake.com
+spec:
+  group: blake.com
+  names:
+    kind: XS3Bucket
+    plural: xs3buckets
+  claimNames:
+    kind: S3Bucket
+    plural: s3buckets
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+      schema:
+        openAPIV3Schema:
+          properties:
+            spec:
+              description: S3BucketSpec defines the desired state of S3Bucket
+              properties:
+                resourceConfig:
+                  description: ResourceConfig defines general properties of this AWS
+                    resource.
+                  properties:
+                    dataClassification:
+                      type: string
+                      enum:
+                      - internal
+                      - public
+                      - confidential
+                      description: dataClassification is the sensitivity of the data stored. Please see Data Classification Policy.
+                  type: object
+              type: object
+            status:
+              description: S3BucketStatus defines the observed state of S3Bucket
+              properties:
+                bucketName:
+                  type: string
+                bucketArn:
+                  type: string
+              type: object
+          type: object
+---
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+metadata:
+  name: bucket.s3.blake.com
+spec:
+  environment:
+    environmentConfigs:
+      - type: Reference
+        ref:
+          name: environment
+  compositeTypeRef:
+    apiVersion: blake.com/v1alpha1
+    kind: XS3Bucket
+  mode: Pipeline
+  pipeline:
+  - step: run-function
+    functionRef:
+      name: control-plane-xfn
+    input:
+      apiVersion: blake.com/v1alpha1
+      kind: XS3Bucket
+      action: render
+      version: v1alpha1

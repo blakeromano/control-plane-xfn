@@ -1,0 +1,10 @@
+---
+apiVersion: pkg.crossplane.io/v1beta1
+kind: Function
+metadata:
+  name: control-plane-xfn
+  namespace: crossplane-system
+spec:
+  package: gitea.cnoe.localtest.me:8443/giteaadmin/control-plane-xfn:1
+  ignoreCrossplaneConstraints: true
+  skipDependencyResolution: true
