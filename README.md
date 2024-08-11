@@ -15,3 +15,15 @@ $ docker build . --tag=runtime
 # Build a function package - see package/crossplane.yaml
 $ crossplane xpkg build -f package --embed-runtime-image=runtime
 ```
+
+```shell
+crossplane beta render ./example/xr.yaml ./example/composition.yaml ./example/functions.yaml
+```
+
+```shell
+idpbuilder create -p ./local/localstack
+```
+
+```shell
+kubectl apply -f example/claims/s3bucket.yaml
+```

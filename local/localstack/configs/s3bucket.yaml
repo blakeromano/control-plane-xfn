@@ -20,6 +20,16 @@ spec:
             spec:
               description: S3BucketSpec defines the desired state of S3Bucket
               properties:
+                managementPolicy:
+                  description: managementPolicy defines the management policy of the
+                    managed resources.
+                  type: string
+                  enum:
+                  - default
+                  - full
+                  - observe
+                  - pause
+                  default: default
                 resourceConfig:
                   description: ResourceConfig defines general properties of this AWS
                     resource.
@@ -32,6 +42,8 @@ spec:
                       - confidential
                       description: dataClassification is the sensitivity of the data stored. Please see Data Classification Policy.
                   type: object
+                  required:
+                    - dataClassification
               type: object
             status:
               description: S3BucketStatus defines the observed state of S3Bucket
@@ -64,5 +76,3 @@ spec:
     input:
       apiVersion: blake.com/v1alpha1
       kind: XS3Bucket
-      action: render
-      version: v1alpha1
