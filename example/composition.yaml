@@ -5,7 +5,7 @@ metadata:
 spec:
   compositeTypeRef:
     apiVersion: example.crossplane.io/v1
-    kind: XR
+    kind: XS3Bucket
   mode: Pipeline
   pipeline:
   - step: run-the-template
