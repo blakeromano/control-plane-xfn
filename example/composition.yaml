@@ -1,7 +1,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
-  name: control-plane-function
+  name: s3-bucket-composition
 spec:
   compositeTypeRef:
     apiVersion: example.crossplane.io/v1
