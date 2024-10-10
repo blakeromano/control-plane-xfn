@@ -2,8 +2,17 @@
 apiVersion: blake.com/v1alpha1
 kind: S3Bucket
 metadata:
-  name: example-bucket
+  name: example-public-bucket
   namespace: default
 spec:
   resourceConfig:
     dataClassification: public
+---
+apiVersion: blake.com/v1alpha1
+kind: S3Bucket
+metadata:
+  name: example-internal-bucket
+  namespace: default
+spec:
+  resourceConfig:
+    dataClassification: internal
