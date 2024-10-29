@@ -1,0 +1,10 @@
+---
+apiVersion: pkg.crossplane.io/v1beta1
+kind: Function
+metadata:
+  name: otk-xfn
+  namespace: crossplane-system
+spec:
+  package: gitea.cnoe.localtest.me:8443/giteaadmin/otk-xfn:1
+  ignoreCrossplaneConstraints: true
+  skipDependencyResolution: true
