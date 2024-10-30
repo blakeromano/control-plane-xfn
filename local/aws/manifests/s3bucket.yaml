@@ -60,11 +60,6 @@ kind: Composition
 metadata:
   name: bucket.s3.blake.com
 spec:
-  environment:
-    environmentConfigs:
-      - type: Reference
-        ref:
-          name: environment
   compositeTypeRef:
     apiVersion: blake.com/v1alpha1
     kind: XS3Bucket
