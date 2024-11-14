@@ -24,6 +24,11 @@ spec:
       - sns
       - rds
       - eks
+      - kinesis
+      - firehose
+      - cloudwatch
+      - logs
+      - secretsmanager
     hostnameImmutable: true
     url:
       type: Static
